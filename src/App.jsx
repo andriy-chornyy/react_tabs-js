@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
 
-import { useState } from 'react';
 import { Tabs } from './components/Tabs/Tabs';
 
 export const tabs = [
@@ -16,25 +15,18 @@ export const App = () => {
   const [activeTabId, onTabSelected] = useState(tabs[0].id);
 
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
-  console.log(activeTab);
 
   return (
     <div className="section">
       <h1 className="title">Selected tab is {activeTab.title}</h1>
 
       <div data-cy="TabsComponent">
-        <div className="tabs is-boxed">
-          <Tabs
-            tabs={tabs}
-            activeTabId={activeTabId}
-            onTabSelected={onTabSelected}
-          />
-        </div>
-
-        <div className="block" data-cy="TabContent">
-        {activeTab.content}
-        </div>
+        <Tabs
+          tabs={tabs}
+          activeTabId={activeTabId}
+          onTabSelected={onTabSelected}
+        />
       </div>
-    </div >
-  )
+    </div>
+  );
 };
